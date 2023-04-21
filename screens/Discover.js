@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, Image, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, Image, ScrollView, Touchable, Button, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Avatar } from '../assets'
@@ -18,8 +18,8 @@ const Discover = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-900 relative">
-            <ScrollView showsVerticalScrollIndicator={false}
-            >
+            <ScrollView 
+            showsVerticalScrollIndicator={false}>
                 <View className="flex-row items-center align-middle justify-between px-8 mt-8">
                     <View>
                         <Text className="text-4xl text-white">Tick<Text className="text-purple-600">r</Text></Text>
@@ -98,7 +98,7 @@ const Discover = () => {
                         </ScrollView>
                     </View>
                 </View>
-                
+
                 <View>
                     <View className="flex-row items-center justify-between">
                         <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Principais Locais</Text>
@@ -109,20 +109,21 @@ const Discover = () => {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
                             {places.map(place => (
-                                <View
-                                    className="ml-4"
-                                    key={place.id}>
-                                    <Image
-                                        source={{ uri: place.image }}
-                                        className="h-40 w-60 rounded-xl"
-                                    />
+                                <View className="ml-4">
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate("Show Information")}
+                                        key={place.id}>
+                                        <Image
+                                            source={{ uri: place.image }}
+                                            className="h-40 w-60 rounded-xl"
+                                        />
+                                    </TouchableOpacity>
                                     <Text className="text-white text-lg font-bold mt-1">{place.name}</Text>
                                 </View>
                             ))}
                         </ScrollView>
                     </View>
                 </View>
-                
             </ScrollView>
         </SafeAreaView>
     )
