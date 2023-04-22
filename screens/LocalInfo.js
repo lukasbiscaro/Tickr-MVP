@@ -1,11 +1,11 @@
-import { SafeAreaView, View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { CasaDeShow } from '../assets'
 import MapView, { Marker } from 'react-native-maps';
 import eventsByLocal from '../data/eventsByLocal'
 
-const ShowInfo = () => {
+const LocalInfo = () => {
 
     const [showMore, setShowMore] = useState(false);
 
@@ -17,17 +17,11 @@ const ShowInfo = () => {
 
     const navigation = useNavigation()
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
     return (
-        <SafeAreaView className="bg-gray-900 flex-1 relative">
+        <View className="bg-gray-900 flex-1 relative">
             <ScrollView
                 showsVerticalScrollIndicator={false}>
-                <View className="flex-col items-center justify-center px-8 mt-5">
+                <View className="flex-col items-center justify-center px-8 mt-16">
                     <View>
                         <Text className="text-xl text-white">Detalhes do Local</Text>
                     </View>
@@ -36,9 +30,10 @@ const ShowInfo = () => {
                             source={CasaDeShow}
                             className="w-[370px] h-[380px] mt-8 rounded-3xl" />
                         <Text className="text-3xl text-white font-bold mt-7">Espaço das Américas</Text>
-                        <Text className="text-md text-white font-bold mt-6">📆 Calendário: Seg á Sab</Text>
-                        <Text className="text-md text-white font-bold my-2">⏱️ Horário de Funcionamento: 15h até 05h</Text>
-                        <Text className="text-md text-white font-bold">🪧 Localizacão: Barra Funda - São Paulo</Text>
+                        <Text className="text-md text-gray-400 font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text>Seg á Sab</Text>
+                        <Text className="text-md text-gray-400 font-semibold my-2"><Text className=
+                            "font-bold">⏱️ Horário de Funcionamento:</Text> 14h até 02h</Text>
+                        <Text className="text-md text-gray-400 font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> Barra Funda - São Paulo</Text>
                         <Text
                             numberOfLines={showMore ? null : 3}
                             className="text-md text-gray-500 font-light mt-5">{textToShow}</Text>
@@ -76,7 +71,7 @@ const ShowInfo = () => {
                         <Text className="text-gray-500 mt-2">R. Tagipuru, 795 - Barra Funda, São Paulo, 01156-000</Text>
                     </View>
                 </View>
-                <View>
+                <View className="mb-28">
                     <View className="flex-row items-center justify-between">
                         <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Eventos neste local</Text>
                         <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
@@ -86,10 +81,11 @@ const ShowInfo = () => {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
                             {eventsByLocal.map(event => (
-                                <View className="ml-4 whitespace-pre-wrap break-words">
+                                <View
+                                    key={event.id}
+                                    className="ml-4 whitespace-pre-wrap break-words">
                                     <TouchableOpacity
-                                        onPress={() => navigation.navigate("Show Information")}
-                                        key={event.id}>
+                                        onPress={() => navigation.navigate("Event Information")}>
                                         <Image
                                             source={{ uri: event.image }}
                                             className="h-40 w-36 rounded-xl"
@@ -105,8 +101,8 @@ const ShowInfo = () => {
                     </View>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 
-export default ShowInfo
+export default LocalInfo

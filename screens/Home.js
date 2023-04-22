@@ -1,26 +1,20 @@
-import { View, Text, SafeAreaView, Image, ScrollView, Touchable, Button, TouchableOpacity } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Avatar } from '../assets'
 import events from '../data/events'
 import styles from '../data/styles'
 import places from '../data/places'
 
-const Discover = () => {
+const Home = () => {
 
     const navigation = useNavigation()
 
-    useLayoutEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        })
-    }, [])
-
     return (
-        <SafeAreaView className="flex-1 bg-gray-900 relative">
-            <ScrollView 
-            showsVerticalScrollIndicator={false}>
-                <View className="flex-row items-center align-middle justify-between px-8 mt-8">
+        <View className="flex-1 bg-gray-900 relative">
+            <ScrollView
+                showsVerticalScrollIndicator={false}>
+                <View className="flex-row items-center align-middle justify-between px-8 mt-20">
                     <View>
                         <Text className="text-4xl text-white">Tick<Text className="text-purple-600">r</Text></Text>
                     </View>
@@ -31,7 +25,6 @@ const Discover = () => {
                         />
                     </View>
                 </View>
-
                 <View className="mt-9 mb-6 h-12">
                     <ScrollView
                         showsHorizontalScrollIndicator={false}
@@ -44,7 +37,6 @@ const Discover = () => {
                         ))}
                     </ScrollView>
                 </View>
-
                 <View>
                     <View className="flex-row items-center justify-between">
                         <Text className="ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Próximos Eventos</Text>
@@ -56,8 +48,7 @@ const Discover = () => {
                             horizontal={true}>
                             {events.map(event => (
                                 <View
-                                    className="ml-4"
-                                    key={event.id}>
+                                    className="ml-4">
                                     <Image
                                         source={{ uri: event.image }}
                                         className="h-full w-80 rounded-xl"
@@ -67,7 +58,6 @@ const Discover = () => {
                         </ScrollView>
                     </View>
                 </View>
-
                 <View>
                     <View className="flex-row items-center justify-between">
                         <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
@@ -78,14 +68,17 @@ const Discover = () => {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
                             {events.map(event => (
-                                <View className="flex-col">
-                                    <View
-                                        className="ml-4"
-                                        key={event.id}>
+                                <View
+                                    key={event.id}
+                                    className="flex-col ml-4">
+                                    <TouchableOpacity
+                                        onPress={() => navigation.navigate("Event Information")}>
                                         <Image
                                             source={{ uri: event.image }}
                                             className="h-44 w-40 rounded-xl"
                                         />
+                                    </TouchableOpacity>
+                                    <View className="flex-col">
                                         <Text className="text-white text-lg font-bold mt-1">{event.name}</Text>
                                         <View className="flex-row">
                                             <Text className="text-gray-500 text-sm font-light">{event.date}</Text>
@@ -98,8 +91,7 @@ const Discover = () => {
                         </ScrollView>
                     </View>
                 </View>
-
-                <View>
+                <View className="mb-24">
                     <View className="flex-row items-center justify-between">
                         <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Principais Locais</Text>
                         <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
@@ -109,10 +101,11 @@ const Discover = () => {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
                             {places.map(place => (
-                                <View className="ml-4">
+                                <View
+                                    key={place.id}
+                                    className="ml-4">
                                     <TouchableOpacity
-                                        onPress={() => navigation.navigate("Show Information")}
-                                        key={place.id}>
+                                        onPress={() => navigation.navigate("Local Information")}>
                                         <Image
                                             source={{ uri: place.image }}
                                             className="h-40 w-60 rounded-xl"
@@ -125,8 +118,8 @@ const Discover = () => {
                     </View>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 
-export default Discover
+export default Home
