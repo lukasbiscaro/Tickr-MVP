@@ -18,12 +18,14 @@ const Home = () => {
                     <View>
                         <Text className="text-4xl text-white">Tick<Text className="text-purple-600">r</Text></Text>
                     </View>
-                    <View className="w-12 h-12 items-center justify-center">
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate("Profile")}
+                        className="w-12 h-12 items-center justify-center">
                         <Image
                             source={Avatar}
                             className="w-full h-full rounded-full object-cover"
                         />
-                    </View>
+                    </TouchableOpacity>
                 </View>
                 <View className="mt-9 mb-6 h-12">
                     <ScrollView
