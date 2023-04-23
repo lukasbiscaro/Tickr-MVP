@@ -4,9 +4,9 @@ import { EmptyTicket } from '../assets'
 
 const MyTickets = () => {
     return (
-        <SafeAreaView className="bg-gray-900 flex-1">
+        <SafeAreaView className="bg-[#121212] flex-1">
             <View className="flex-col items-center justify-center px-8 mt-5">
-                <Text className="text-xl text-white">Meus Ingressos</Text>
+                <Text className="text-xl text-[#FFFFFF] font-bold">Meus Ingressos</Text>
             </View>
             <View className="h-full items-center justify-center">
                 <View className="items-center justify-center mb-20">
@@ -16,8 +16,8 @@ const MyTickets = () => {
                             className="w-full h-full"
                         />
                     </View>
-                    <Text className="text-white text-2xl font-bold mb-4">Opsss!</Text>
-                    <Text className="text-white text-md font-semibold">Você não possui ingressos para próximos eventos.</Text>
+                    <Text className="text-[#8E05C2] text-3xl font-bold mb-4">Opsss!</Text>
+                    <Text className="text-[#FFFFFF] text-lg font-light w-64 text-center">Você não possui ingressos para próximos eventos.</Text>
                 </View>
             </View>
         </SafeAreaView>

@@ -11,12 +11,12 @@ const Home = () => {
     const navigation = useNavigation()
 
     return (
-        <View className="flex-1 bg-gray-900 relative">
+        <View className="flex-1 bg-[#121212] relative">
             <ScrollView
                 showsVerticalScrollIndicator={false}>
                 <View className="flex-row items-center align-middle justify-between px-8 mt-20">
                     <View>
-                        <Text className="text-4xl text-white">Tick<Text className="text-purple-600">r</Text></Text>
+                        <Text className="text-4xl text-[#FFFFFF]">Tick<Text className="text-[#8E05C2]">r</Text></Text>
                     </View>
                     <TouchableOpacity
                         onPress={() => navigation.navigate("Profile")}
@@ -33,16 +33,16 @@ const Home = () => {
                         horizontal={true}>
                         {styles.map(style => (
                             <View
-                                className="mt-2 ml-4 justify-center align-middle bg-gray-800 w-24 h-9 rounded-xl shadow-sm shadow-black">
-                                <Text className="text-center text-lg text-white">{style.name}</Text>
+                                className="mt-2 ml-4 justify-center align-middle bg-[#8E05C2] w-24 h-9 rounded-xl shadow-sm shadow-black">
+                                <Text className="text-center text-lg text-[#FFFFFF]">{style.name}</Text>
                             </View>
                         ))}
                     </ScrollView>
                 </View>
                 <View>
                     <View className="flex-row items-center justify-between">
-                        <Text className="ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Próximos Eventos</Text>
-                        <Text className="mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
+                        <Text className="ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Próximos Eventos</Text>
+                        <Text className="mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-36 w-full flex justify-center items-center">
                         <ScrollView
@@ -62,8 +62,8 @@ const Home = () => {
                 </View>
                 <View>
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -81,11 +81,11 @@ const Home = () => {
                                         />
                                     </TouchableOpacity>
                                     <View className="flex-col">
-                                        <Text className="text-white text-lg font-bold mt-1">{event.name}</Text>
+                                        <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{event.name}</Text>
                                         <View className="flex-row">
-                                            <Text className="text-gray-500 text-sm font-light">{event.date}</Text>
-                                            <Text className="text-gray-500 text-sm font-light mx-1">-</Text>
-                                            <Text className="text-gray-500 text-sm font-light">{event.time}</Text>
+                                            <Text className="text-[#404040] text-sm font-light">{event.date}</Text>
+                                            <Text className="text-[#404040] text-sm font-light mx-1">-</Text>
+                                            <Text className="text-[#404040] text-sm font-light">{event.time}</Text>
                                         </View>
                                     </View>
                                 </View>
@@ -95,8 +95,8 @@ const Home = () => {
                 </View>
                 <View className="mb-24">
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Principais Locais</Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Principais Locais</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -113,7 +113,7 @@ const Home = () => {
                                             className="h-40 w-60 rounded-xl"
                                         />
                                     </TouchableOpacity>
-                                    <Text className="text-white text-lg font-bold mt-1">{place.name}</Text>
+                                    <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{place.name}</Text>
                                 </View>
                             ))}
                         </ScrollView>

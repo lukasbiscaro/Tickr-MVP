@@ -18,28 +18,28 @@ const LocalInfo = () => {
     const navigation = useNavigation()
 
     return (
-        <View className="bg-gray-900 flex-1 relative">
+        <View className="bg-[#121212] flex-1 relative">
             <ScrollView
                 showsVerticalScrollIndicator={false}>
                 <View className="flex-col items-center justify-center px-8 mt-16">
                     <View>
-                        <Text className="text-xl text-white">Detalhes do Local</Text>
+                        <Text className="text-xl text-[#FFFFFF] font-bold">Detalhes do Local</Text>
                     </View>
                     <View>
                         <Image
                             source={CasaDeShow}
                             className="w-[370px] h-[380px] mt-8 rounded-3xl" />
-                        <Text className="text-3xl text-white font-bold mt-7">Espaço das Américas</Text>
-                        <Text className="text-md text-gray-400 font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text>Seg á Sab</Text>
-                        <Text className="text-md text-gray-400 font-semibold my-2"><Text className=
+                        <Text className="text-3xl text-[#FFFFFF] font-bold mt-7">Espaço das Américas</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text>Seg á Sab</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold my-2"><Text className=
                             "font-bold">⏱️ Horário de Funcionamento:</Text> 14h até 02h</Text>
-                        <Text className="text-md text-gray-400 font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> Barra Funda - São Paulo</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> Barra Funda - São Paulo</Text>
                         <Text
                             numberOfLines={showMore ? null : 3}
-                            className="text-md text-gray-500 font-light mt-5">{textToShow}</Text>
+                            className="text-md text-[#404040] font-light mt-5">{textToShow}</Text>
                         {textToShow.length > 120 && (
                             <TouchableOpacity onPress={toggleShowMore}>
-                                <Text className="text-purple-500 mt-2">
+                                <Text className="text-[#8E05C2] mt-2">
                                     {showMore ? 'Ler menos' : 'Ler mais'}
                                 </Text>
                             </TouchableOpacity>
@@ -68,13 +68,13 @@ const LocalInfo = () => {
                                 />
                             </MapView>
                         </View>
-                        <Text className="text-gray-500 mt-2">R. Tagipuru, 795 - Barra Funda, São Paulo, 01156-000</Text>
+                        <Text className="text-[#404040] mt-2">R. Tagipuru, 795 - Barra Funda, São Paulo, 01156-000</Text>
                     </View>
                 </View>
                 <View className="mb-28">
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Eventos neste local</Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Eventos neste local</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -92,8 +92,8 @@ const LocalInfo = () => {
                                         />
                                     </TouchableOpacity>
                                     <View>
-                                        <Text className="text-white text-md font-bold mt-2">{event.name}</Text>
-                                        <Text className="text-gray-500 text-sm font-light">{event.date}</Text>
+                                        <Text className="text-[#FFFFFF] text-md font-bold mt-2">{event.name}</Text>
+                                        <Text className="text-[#404040] text-sm font-light">{event.date}</Text>
                                     </View>
                                 </View>
                             ))}

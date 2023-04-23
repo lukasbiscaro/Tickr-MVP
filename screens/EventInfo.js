@@ -18,29 +18,29 @@ const EventInfo = () => {
     const navigation = useNavigation()
 
     return (
-        <View className="bg-gray-900 flex-1 relative">
+        <View className="bg-[#121212] flex-1 relative">
             <ScrollView
                 showsVerticalScrollIndicator={false}>
                 <View className="flex-col items-center justify-center px-8 mt-16">
                     <View>
-                        <Text className="text-xl text-white">Detalhes do Evento</Text>
+                        <Text className="text-xl text-[#FFFFFF] font-bold">Detalhes do Evento</Text>
                     </View>
                     <View>
                         <Image
                             source={TheTown}
                             className="w-[370px] h-[380px] mt-8 rounded-3xl" />
-                        <Text className="text-3xl text-white font-bold mt-7 mb-4 uppercase">The Town</Text>
-                        <Text className="text-lg text-white font-bold">R$ 50,00 - R$ 450,00</Text>
-                        <Text className="text-md text-gray-400 font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text> 2,3,7,9 e 10 de Set</Text>
-                        <Text className="text-md text-gray-400 font-semibold my-2"><Text className=
+                        <Text className="text-3xl text-[#FFFFFF] font-bold mt-7 mb-4 uppercase">The Town</Text>
+                        <Text className="text-lg text-[#FFFFFF] font-bold">R$ 50,00 - R$ 450,00</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text> 2,3,7,9 e 10 de Set</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold my-2"><Text className=
                             "font-bold">⏱️ Horário de Funcionamento:</Text> 14h até 02h</Text>
-                        <Text className="text-md text-gray-400 font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> Cidade da Música - Autódromo de Interlagos</Text>
+                        <Text className="text-md text-[#b3b3b3] font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> Cidade da Música - Autódromo de Interlagos</Text>
                         <Text
                             numberOfLines={showMore ? null : 3}
-                            className="text-md text-gray-500 font-light mt-5">{textToShow}</Text>
+                            className="text-md text-[#404040] font-light mt-5">{textToShow}</Text>
                         {textToShow.length > 120 && (
                             <TouchableOpacity onPress={toggleShowMore}>
-                                <Text className="text-purple-500 mt-2">
+                                <Text className="text-[#8E05C2] mt-2">
                                     {showMore ? 'Ler menos' : 'Ler mais'}
                                 </Text>
                             </TouchableOpacity>
@@ -74,8 +74,8 @@ const EventInfo = () => {
                 </View>
                 <View className="mb-12">
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-purple-500 font-semibold uppercase">Participantes</Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-purple-500 font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Participantes</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -92,7 +92,7 @@ const EventInfo = () => {
                                             className="mt-4 h-24 w-24 rounded-full"
                                         />
                                     </TouchableOpacity>
-                                    <Text className="text-white text-md text-center font-bold mt-3">{artist.name}</Text>
+                                    <Text className="text-[#FFFFFF] text-md text-center font-bold mt-3">{artist.name}</Text>
                                 </View>
                             ))}
                         </ScrollView>
