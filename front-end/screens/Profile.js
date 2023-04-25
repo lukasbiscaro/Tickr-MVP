@@ -1,12 +1,31 @@
 import { ScrollView, SafeAreaView, View, Image, Text } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { Avatar } from '../assets/index'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import axios from 'axios'
+import { API_URL } from "@env"
 
 const Profile = () => {
 
     const navigation = useNavigation()
+
+    const [userData, setUserData] = useState([])
+
+    const getData = async () => {
+        try {
+            const response = await axios.get(API_URL)
+            const userData = response.data[0]
+            setUserData(userData)
+
+        } catch (error) {
+            return console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getData();
+    }, []);
 
     return (
         <SafeAreaView className="bg-[#121212] flex-1 relative">
@@ -18,14 +37,20 @@ const Profile = () => {
                             className="w-full h-full rounded-full"
                         />
                     </View>
-                    <View>
-                        <Text className="text-2xl text-[#FFFFFF] font-bold">
-                            Lukas Biscaro
-                        </Text>
-                        <Text className="text-[#404040] font-semibold mt-2">
-                            lukas.biscaro@hotmail.com
-                        </Text>
-                    </View>
+                    {
+                        userData && (
+                            <>
+                                <View>
+                                    <Text className="text-2xl text-[#FFFFFF] font-bold">
+                                        {userData.user_name}
+                                    </Text>
+                                    <Text className="text-[#404040] font-semibold mt-2">
+                                        {userData.user_email}
+                                    </Text>
+                                </View>
+                            </>
+                        )
+                    }
                 </View>
                 <TouchableOpacity
                     className="mx-4 mt-4 mb-8 h-10 items-center justify-center rounded-xl border border-[#8E05C2]">
