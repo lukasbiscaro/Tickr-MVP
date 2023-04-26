@@ -1,6 +1,5 @@
 import { ScrollView, SafeAreaView, View, Image, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import { Avatar } from '../assets/index'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import axios from 'axios'
@@ -8,28 +7,22 @@ import { API_URL } from "@env"
 
 const Profile = () => {
 
-    const navigation = useNavigation()
-
     const [userData, setUserData] = useState([])
 
-    const getData = async () => {
-        try {
-            const response = await axios.get(API_URL)
-            const userData = response.data[0]
-            setUserData(userData)
-
-        } catch (error) {
-            return console.log(error)
-        }
-    }
-
     useEffect(() => {
-        getData();
+        axios.get(`${API_URL}users/`)
+            .then(response => {
+                setUserData(response.data[0])
+            })
+            .catch(err => console.log(err))
     }, []);
 
     return (
-        <SafeAreaView className="bg-[#121212] flex-1 relative">
+        <View className="bg-[#121212] flex-1 relative">
             <ScrollView>
+                <View className="flex-col items-center justify-center px-8 mt-16">
+                    <Text className="text-xl text-[#FFFFFF] font-bold">Meu Perfil</Text>
+                </View>
                 <View className="h-40 mx-4 flex-row items-center">
                     <View className="w-28 h-28 ml-5 mr-5">
                         <Image
@@ -81,14 +74,14 @@ const Profile = () => {
                         <Text className="text-[#404040] font-bold text-md ml-10 uppercase">*9876</Text>
                     </View>
                 </View>
-                <View className="mx-4">
+                <View className="mx-4 mb-28">
                     <TouchableOpacity
                         className="mt-10 h-10 justify-center items-center rounded-xl bg-[#181818]">
                         <Text className="text-red-500 font-bold text-md">Sair da Conta</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     )
 }
 

@@ -1,14 +1,28 @@
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
+import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Avatar } from '../assets'
+import { Avatar, TheTown } from '../assets'
 import events from '../data/events'
 import styles from '../data/styles'
 import places from '../data/places'
+import axios from 'axios'
+import { API_URL } from '@env'
 
 const Home = () => {
 
     const navigation = useNavigation()
+
+    const [eventsData, setEventsData] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        axios.get(`${API_URL}events/`)
+            .then(response => {
+                setEventsData(response.data)
+                setLoading(true)
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     return (
         <View className="flex-1 bg-[#121212] relative">
@@ -69,27 +83,39 @@ const Home = () => {
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
-                            {events.map(event => (
-                                <View
-                                    key={event.id}
-                                    className="flex-col ml-4">
-                                    <TouchableOpacity
-                                        onPress={() => navigation.navigate("Event Information")}>
-                                        <Image
-                                            source={{ uri: event.image }}
-                                            className="h-44 w-40 rounded-xl"
-                                        />
-                                    </TouchableOpacity>
-                                    <View className="flex-col">
-                                        <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{event.name}</Text>
-                                        <View className="flex-row">
-                                            <Text className="text-[#404040] text-sm font-light">{event.date}</Text>
-                                            <Text className="text-[#404040] text-sm font-light mx-1">-</Text>
-                                            <Text className="text-[#404040] text-sm font-light">{event.time}</Text>
-                                        </View>
-                                    </View>
-                                </View>
-                            ))}
+                            {
+                                loading
+                                    ?
+                                    eventsData.length > 0 && eventsData.slice(0, 5).map((event) => {
+                                        return (
+                                            <>
+                                                <View
+                                                    key={event.id}
+                                                    className="flex-col ml-4">
+                                                    <TouchableOpacity
+                                                        onPress={() => navigation.navigate("Event Information", { eventId: event.id })}>
+                                                        <Image
+                                                            source={TheTown}
+                                                            className="h-44 w-40 rounded-xl"
+                                                        />
+                                                    </TouchableOpacity>
+                                                    <View className="flex-col">
+                                                        <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{event.event_name}</Text>
+                                                        <View className="flex-row">
+                                                            <Text className="text-[#404040] text-sm font-light">{event.event_date}</Text>
+                                                            {/* <Text className="text-[#404040] text-sm font-light mx-1">-</Text>
+                                                        <Text className="text-[#404040] text-sm font-light">{event.time}</Text> */}
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            </>
+                                        )
+                                    })
+                                    :
+                                    <ActivityIndicator
+                                        size="large"
+                                        color="#8E05C2" />
+                            }
                         </ScrollView>
                     </View>
                 </View>
