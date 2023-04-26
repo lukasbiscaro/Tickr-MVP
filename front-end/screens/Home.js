@@ -1,10 +1,8 @@
 import { View, Text, Image, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
-import { Avatar, TheTown } from '../assets'
-import events from '../data/events'
+import { Avatar, CasaDeShow, TheTown } from '../assets'
 import styles from '../data/styles'
-import places from '../data/places'
 import axios from 'axios'
 import { API_URL } from '@env'
 
@@ -13,13 +11,24 @@ const Home = () => {
     const navigation = useNavigation()
 
     const [eventsData, setEventsData] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [localsData, setLocalsData] = useState([])
+    const [eventsLoading, setEventsLoading] = useState(false)
+    const [localsLoading, setLocalsLoading] = useState(false)
 
     useEffect(() => {
         axios.get(`${API_URL}events/`)
             .then(response => {
                 setEventsData(response.data)
-                setLoading(true)
+                setEventsLoading(true)
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    useEffect(() => {
+        axios.get(`${API_URL}locals/`)
+            .then(response => {
+                setLocalsData(response.data)
+                setLocalsLoading(true)
             })
             .catch(err => console.log(err))
     }, [])
@@ -45,12 +54,14 @@ const Home = () => {
                     <ScrollView
                         showsHorizontalScrollIndicator={false}
                         horizontal={true}>
-                        {styles.map(style => (
-                            <View
-                                className="mt-2 ml-4 justify-center align-middle bg-[#8E05C2] w-24 h-9 rounded-xl shadow-sm shadow-black">
-                                <Text className="text-center text-lg text-[#FFFFFF]">{style.name}</Text>
-                            </View>
-                        ))}
+                        {
+                            styles.map(style => (
+                                <View
+                                    className="mt-2 ml-4 justify-center align-middle bg-[#8E05C2] w-24 h-9 rounded-xl shadow-sm shadow-black">
+                                    <Text className="text-center text-lg text-[#FFFFFF]">{style.name}</Text>
+                                </View>
+                            ))
+                        }
                     </ScrollView>
                 </View>
                 <View>
@@ -62,15 +73,18 @@ const Home = () => {
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
-                            {events.map(event => (
-                                <View
-                                    className="ml-4">
-                                    <Image
-                                        source={{ uri: event.image }}
-                                        className="h-full w-80 rounded-xl"
-                                    />
-                                </View>
-                            ))}
+                            {
+                                eventsData.length > 0 && eventsData.slice(0, 8).map((event) => {
+                                    return (
+                                        <View
+                                            className="ml-4">
+                                            <Image
+                                                source={TheTown}
+                                                className="h-full w-80 rounded-xl"
+                                            />
+                                        </View>
+                                    )
+                                })}
                         </ScrollView>
                     </View>
                 </View>
@@ -84,7 +98,7 @@ const Home = () => {
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
                             {
-                                loading
+                                eventsLoading
                                     ?
                                     eventsData.length > 0 && eventsData.slice(0, 5).map((event) => {
                                         return (
@@ -127,20 +141,28 @@ const Home = () => {
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
-                            {places.map(place => (
-                                <View
-                                    key={place.id}
-                                    className="ml-4">
-                                    <TouchableOpacity
-                                        onPress={() => navigation.navigate("Local Information")}>
-                                        <Image
-                                            source={{ uri: place.image }}
-                                            className="h-40 w-60 rounded-xl"
-                                        />
-                                    </TouchableOpacity>
-                                    <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{place.name}</Text>
-                                </View>
-                            ))}
+                            {
+                                localsLoading
+                                    ?
+                                    localsData.length > 0 && localsData.slice(0, 5).map((local) => (
+                                        <View
+                                            key={local.id}
+                                            className="ml-4">
+                                            <TouchableOpacity
+                                                onPress={() => navigation.navigate("Local Information", { localId: local.id })}>
+                                                <Image
+                                                    source={CasaDeShow}
+                                                    className="h-40 w-60 rounded-xl"
+                                                />
+                                            </TouchableOpacity>
+                                            <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{local.local_name}</Text>
+                                        </View>
+                                    ))
+                                    :
+                                    <ActivityIndicator
+                                        size="large"
+                                        color="#8E05C2" />
+                            }
                         </ScrollView>
                     </View>
                 </View>

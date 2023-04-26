@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { TheTown } from '../assets'
+import { Avatar, TheTown } from '../assets'
 import MapView, { Marker } from 'react-native-maps';
 import artists from '../data/artists'
 import axios from 'axios';
@@ -106,19 +106,21 @@ const EventInfo = () => {
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
-                            {artists.map(artist => (
-                                <View
-                                    key={artist.id}
-                                    className="ml-4">
-                                    <TouchableOpacity>
-                                        <Image
-                                            source={artist.image}
-                                            className="mt-4 h-24 w-24 rounded-full"
-                                        />
-                                    </TouchableOpacity>
-                                    <Text className="text-[#FFFFFF] text-md text-center font-bold mt-3">{artist.name}</Text>
-                                </View>
-                            ))}
+                            {
+                                artists.map(artist => (
+                                    <View
+                                        key={artist.id}
+                                        className="ml-4">
+                                        <TouchableOpacity>
+                                            <Image
+                                                source={Avatar}
+                                                className="mt-4 h-24 w-24 rounded-full"
+                                            />
+                                        </TouchableOpacity>
+                                        <Text className="text-[#FFFFFF] text-md text-center font-bold mt-3">{artist.name}</Text>
+                                    </View>
+                                ))
+                            }
                         </ScrollView>
                     </View>
                 </View>
