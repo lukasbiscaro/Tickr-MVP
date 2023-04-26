@@ -79,7 +79,7 @@ const Home = () => {
                         <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
                         <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
                     </View>
-                    <View className="h-56 w-full flex justify-center items-center">
+                    <View className="h-64 w-full flex justify-center items-center">
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
@@ -101,10 +101,9 @@ const Home = () => {
                                                     </TouchableOpacity>
                                                     <View className="flex-col">
                                                         <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{event.event_name}</Text>
-                                                        <View className="flex-row">
+                                                        <View className="flex-col">
                                                             <Text className="text-[#404040] text-sm font-light">{event.event_date}</Text>
-                                                            {/* <Text className="text-[#404040] text-sm font-light mx-1">-</Text>
-                                                        <Text className="text-[#404040] text-sm font-light">{event.time}</Text> */}
+                                                            <Text className="text-[#404040] text-sm font-light">R$ {event.event_price}</Text>
                                                         </View>
                                                     </View>
                                                 </View>

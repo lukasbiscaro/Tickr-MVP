@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -27,6 +28,7 @@ def get_events(request):
 
 @api_view(["GET", "PUT", "DELETE"])
 def manage_events_by_id(request, id):
+    event = get_object_or_404(Event, pk=id)
     try:
         event = Event.objects.get(pk=id)
     except:

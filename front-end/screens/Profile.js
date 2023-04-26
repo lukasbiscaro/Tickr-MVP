@@ -1,4 +1,4 @@
-import { ScrollView, SafeAreaView, View, Image, Text } from 'react-native'
+import { ScrollView, View, Image, Text } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Avatar } from '../assets/index'
 import { TouchableOpacity } from 'react-native-gesture-handler'
