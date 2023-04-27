@@ -34,15 +34,16 @@ const Home = () => {
     }, [])
 
     return (
-        <View className="flex-1 bg-[#121212] relative">
+        <View className="flex-1 bg-mainBlack relative">
+
             <ScrollView
                 showsVerticalScrollIndicator={false}>
                 <View className="flex-row items-center align-middle justify-between px-8 mt-20">
                     <View>
-                        <Text className="text-4xl text-[#FFFFFF]">Tick<Text className="text-[#8E05C2]">r</Text></Text>
+                        <Text className="text-4xl text-white">Tick<Text className="text-mainPurple">r</Text></Text>
                     </View>
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("Profile")}
+                        onPress={() => navigation.navigate("Perfil")}
                         className="w-12 h-12 items-center justify-center">
                         <Image
                             source={Avatar}
@@ -56,18 +57,18 @@ const Home = () => {
                         horizontal={true}>
                         {
                             styles.map(style => (
-                                <View
-                                    className="mt-2 ml-4 justify-center align-middle bg-[#8E05C2] w-24 h-9 rounded-xl shadow-sm shadow-black">
-                                    <Text className="text-center text-lg text-[#FFFFFF]">{style.name}</Text>
-                                </View>
+                                <TouchableOpacity
+                                    className="mt-2 ml-4 justify-center align-middle bg-mainPurple w-24 h-9 rounded shadow-sm shadow-black">
+                                    <Text className="text-center text-lg text-white font-semibold">{style.name}</Text>
+                                </TouchableOpacity>
                             ))
                         }
                     </ScrollView>
                 </View>
                 <View>
                     <View className="flex-row items-center justify-between">
-                        <Text className="ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Próximos Eventos</Text>
-                        <Text className="mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-mainPurple font-semibold uppercase">Próximos Eventos</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-mainPurple font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-36 w-full flex justify-center items-center">
                         <ScrollView
@@ -76,13 +77,13 @@ const Home = () => {
                             {
                                 eventsData.length > 0 && eventsData.slice(0, 8).map((event) => {
                                     return (
-                                        <View
+                                        <TouchableOpacity
                                             className="ml-4">
                                             <Image
                                                 source={TheTown}
-                                                className="h-full w-80 rounded-xl"
+                                                className="h-full w-80 rounded"
                                             />
-                                        </View>
+                                        </TouchableOpacity>
                                     )
                                 })}
                         </ScrollView>
@@ -90,10 +91,10 @@ const Home = () => {
                 </View>
                 <View>
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
+                        <Text className="mt-16 ml-4 mb-4 text-xl text-mainPurple font-light uppercase">Rolando <Text className="font-semibold">Hoje</Text></Text>
+                        <Text className="mt-16 mr-4 mb-4 text-sm text-mainPurple font-light underline">Ver Todos</Text>
                     </View>
-                    <View className="h-64 w-full flex justify-center items-center">
+                    <View className="h-72 w-full flex justify-center items-center">
                         <ScrollView
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}>
@@ -107,17 +108,17 @@ const Home = () => {
                                                     key={event.id}
                                                     className="flex-col ml-4">
                                                     <TouchableOpacity
-                                                        onPress={() => navigation.navigate("Event Information", { eventId: event.id })}>
+                                                        onPress={() => navigation.navigate("Detalhes do Evento", { eventId: event.id })}>
                                                         <Image
                                                             source={TheTown}
-                                                            className="h-44 w-40 rounded-xl"
+                                                            className="h-44 w-40 rounded"
                                                         />
                                                     </TouchableOpacity>
                                                     <View className="flex-col">
-                                                        <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{event.event_name}</Text>
+                                                        <Text className="text-white text-lg font-bold mt-3 mb-1">{event.event_name}</Text>
                                                         <View className="flex-col">
-                                                            <Text className="text-[#404040] text-sm font-light">{event.event_date}</Text>
-                                                            <Text className="text-[#404040] text-sm font-light">R$ {event.event_price}</Text>
+                                                            <Text className="text-lowGray text-sm font-light">{event.event_date}</Text>
+                                                            <Text className="text-lowGray text-sm font-light mt-1">R$ {event.event_price}</Text>
                                                         </View>
                                                     </View>
                                                 </View>
@@ -134,8 +135,8 @@ const Home = () => {
                 </View>
                 <View className="mb-24">
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Principais Locais</Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-mainPurple font-semibold uppercase">Principais Locais</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-mainPurple font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -149,13 +150,13 @@ const Home = () => {
                                             key={local.id}
                                             className="ml-4">
                                             <TouchableOpacity
-                                                onPress={() => navigation.navigate("Local Information", { localId: local.id })}>
+                                                onPress={() => navigation.navigate("Detalhes do Local", { localId: local.id })}>
                                                 <Image
                                                     source={CasaDeShow}
-                                                    className="h-40 w-60 rounded-xl"
+                                                    className="h-40 w-60 rounded"
                                                 />
                                             </TouchableOpacity>
-                                            <Text className="text-[#FFFFFF] text-lg font-bold mt-1">{local.local_name}</Text>
+                                            <Text className="text-white text-lg font-semibold mt-1">{local.local_name}</Text>
                                         </View>
                                     ))
                                     :

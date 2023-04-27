@@ -21,14 +21,14 @@ export const StackNavigator = () => {
                     headerShown: false
                 }} />
             <Stack.Screen
-                name="Event Information"
+                name="Detalhes do Evento"
                 component={EventInfo}
                 options={{
                     headerShown: false
                 }}
             />
             <Stack.Screen
-                name="Local Information"
+                name="Detalhes do Local"
                 component={LocalInfo}
                 options={{
                     headerShown: false
@@ -46,7 +46,7 @@ export const TabNavigator = () => {
                 tabBarStyle: {
                     position: 'absolute',
                     paddingBottom: 0,
-                    backgroundColor: "#181818",
+                    backgroundColor: "#121214",
                     borderTopWidth: 0,
                     paddingBottom: 30,
                     paddingTop: 10,
@@ -55,38 +55,38 @@ export const TabNavigator = () => {
                 }
             }}>
             <Tab.Screen
-                name="Main Home"
+                name="Início"
                 component={StackNavigator}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size, focused }) => {
                         if (focused) {
                             return <Foundation name="home" size={35} color="#8E05C2" />
-                        } return <Foundation name="home" size={30} color="#404040" />
+                        } return <Foundation name="home" size={30} color="#8D8D99" />
                     }
                 }}
             />
             <Tab.Screen
-                name="My Tickets"
+                name="Ingressos"
                 component={MyTickets}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size, focused }) => {
                         if (focused) {
                             return <FontAwesome name="ticket" size={33} color="#8E05C2" />
-                        } return <FontAwesome name="ticket" size={28} color="#404040" />
+                        } return <FontAwesome name="ticket" size={28} color="#8D8D99" />
                     }
                 }}
             />
             <Tab.Screen
-                name="Profile"
+                name="Perfil"
                 component={Profile}
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size, focused }) => {
                         if (focused) {
                             return <FontAwesome5 name="user-alt" size={28} color="#8E05C2" />
-                        } return <FontAwesome5 name="user-alt" size={23} color="#404040" />
+                        } return <FontAwesome5 name="user-alt" size={23} color="#8D8D99" />
                     }
                 }}
             />

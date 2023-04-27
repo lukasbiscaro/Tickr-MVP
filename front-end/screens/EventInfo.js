@@ -30,12 +30,12 @@ const EventInfo = () => {
     };
 
     return (
-        <View className="bg-[#121212] flex-1 relative">
+        <View className="bg-mainBlack flex-1 relative">
             <ScrollView
                 showsVerticalScrollIndicator={false}>
                 <View className="flex-col items-center justify-center px-8 mt-16">
                     <View>
-                        <Text className="text-xl text-[#FFFFFF] font-bold">Detalhes do Evento</Text>
+                        <Text className="text-xl text-white font-semibold">Detalhes do Evento</Text>
                     </View>
                     {
                         loading
@@ -46,19 +46,19 @@ const EventInfo = () => {
                                         <View key={event.id}>
                                             <Image
                                                 source={TheTown} // EXAMPLE IMAGE (Fix API)
-                                                className="w-[370px] h-[380px] mt-8 rounded-3xl" />
-                                            <Text className="text-3xl text-[#FFFFFF] font-bold mt-7 mb-4 uppercase">{event.event_name}</Text>
-                                            <Text className="text-lg text-[#FFFFFF] font-bold">R$ {event.event_price}</Text>
-                                            <Text className="text-md text-[#b3b3b3] font-semibold mt-6"><Text className="font-bold">📆 Calendário:</Text> {event.event_date}</Text>
-                                            <Text className="text-md text-[#b3b3b3] font-semibold my-2"><Text className=
-                                                "font-bold">⏱️ Horário de Funcionamento:</Text> {event.event_time_start} até {event.event_time_ends}</Text>
-                                            <Text className="text-md text-[#b3b3b3] font-semibold"><Text className="font-bold">🪧 Localizacão:</Text> {event.event_location}</Text>
+                                                className="w-[370px] h-[280px] mt-8 rounded" />
+                                            <Text className="text-3xl text-white font-semibold mt-7 mb-4 uppercase">{event.event_name}</Text>
+                                            <Text className="text-lg text-white font-semibold">R$ {event.event_price}</Text>
+                                            <Text className="text-md text-lowGray font-semisemibold mt-8"><Text className="font-semibold text-white">📆 Calendário:</Text> {event.event_date}</Text>
+                                            <Text className="text-md text-lowGray font-semisemibold my-2"><Text className=
+                                                "font-semibold text-white">⏱️ Horário de Funcionamento:</Text> {event.event_time_start.slice(0, 5)}h até {event.event_time_ends.slice(0, 5)}h</Text>
+                                            <Text className="text-md text-lowGray font-semisemibold"><Text className="font-semibold text-white">🪧 Localizacão:</Text> {event.event_location}</Text>
                                             <Text
                                                 numberOfLines={showMore ? null : 3}
-                                                className="text-md text-[#404040] font-light mt-5">{event.event_description}</Text>
+                                                className="text-md text-lowGray font-light mt-11">{event.event_description}</Text>
                                             {event.event_description.length > 120 && (
                                                 <TouchableOpacity onPress={toggleShowMore}>
-                                                    <Text className="text-[#8E05C2] mt-2">
+                                                    <Text className="text-mainPurple mt-2">
                                                         {showMore ? 'Ler menos' : 'Ler mais'}
                                                     </Text>
                                                 </TouchableOpacity>
@@ -67,7 +67,7 @@ const EventInfo = () => {
                                         <View>
                                             <View>
                                                 <MapView
-                                                    style={{ borderRadius: 20 }}
+                                                    style={{ borderRadius: 5 }}
                                                     className="w-[370px] h-[200px] mt-8"
                                                     initialRegion={{
                                                         latitude: -23.697427688758005,
@@ -85,7 +85,7 @@ const EventInfo = () => {
                                                     />
                                                 </MapView>
                                             </View>
-                                            <Text className="text-gray-500 mt-2">{event.event_location}</Text>
+                                            <Text className="text-lowGray mt-2">{event.event_location}</Text>
                                         </View>
                                     </>
                                 )
@@ -99,8 +99,8 @@ const EventInfo = () => {
                 </View>
                 <View className="mb-12">
                     <View className="flex-row items-center justify-between">
-                        <Text className="mt-10 ml-4 mb-4 text-xl text-[#8E05C2] font-semibold uppercase">Participantes</Text>
-                        <Text className="mt-10 mr-4 mb-4 text-sm text-[#8E05C2] font-light underline">Ver Todos</Text>
+                        <Text className="mt-10 ml-4 mb-4 text-xl text-mainPurple font-semisemibold uppercase">Participantes</Text>
+                        <Text className="mt-10 mr-4 mb-4 text-sm text-mainPurple font-light underline">Ver Todos</Text>
                     </View>
                     <View className="h-56 w-full flex justify-center items-center">
                         <ScrollView
@@ -117,7 +117,7 @@ const EventInfo = () => {
                                                 className="mt-4 h-24 w-24 rounded-full"
                                             />
                                         </TouchableOpacity>
-                                        <Text className="text-[#FFFFFF] text-md text-center font-bold mt-3">{artist.name}</Text>
+                                        <Text className="text-white text-md text-center font-semibold mt-3">{artist.name}</Text>
                                     </View>
                                 ))
                             }
